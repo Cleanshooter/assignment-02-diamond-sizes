@@ -47,7 +47,51 @@ public class Logic
     public void process(int size) {
 
         // TODO -- add your code here
+        double sizeD = size;
+        if (size < 1) {
+            mOut.println("Nope...");
+        } else {
+            makeLine(size);
+            for (int i = 0; i <= sizeD/2; i++){
+                mOut.print("|");
+                for (int j = 1; j < size-i; j++){
+                    mOut.print(" ");
+                }
+                mOut.print("/");
+                // j <= 11-i*2
+                if(i == 0){
+                    // Do nothing...
+                }
+                else if(i % 2 != 0){
+                    for (int k = 0; k < i; k++){
+                        mOut.print("--");
+                    }
+                }
+                else if(i % 2 == 0){
+                    for (int l = 0; l < i; l++) {
+                        mOut.print("==");
+                    }
+                }
 
+                mOut.print("\\");
+                for (int j = 1; j < size-i; j++){
+                    mOut.print(" ");
+                }
+                mOut.print("|");
+                mOut.println();
+            }
+            makeLine(size);
+        }
+
+    }
+
+    public void makeLine(int size){
+        mOut.print("+");
+        for (int i = 0; i < size; i++){
+            mOut.print("--");
+        }
+        mOut.print("+");
+        mOut.println();
     }
 
 
