@@ -47,36 +47,47 @@ public class Logic
     public void process(int size) {
 
         // TODO -- add your code here
-        double sizeD = size;
         if (size < 1) {
             mOut.println("Nope...");
+        } else if (size == 1) {
+            makeLine(size);
+            mOut.println("|<>|");
+            makeLine(size);
         } else {
             makeLine(size);
-            for (int i = 0; i <= sizeD/2; i++){
+            // top triangle
+            for (int i = 1; i < size; i++){
                 mOut.print("|");
-                for (int j = 1; j < size-i; j++){
-                    mOut.print(" ");
-                }
+                positiveSpace(size, i);
                 mOut.print("/");
-                // j <= 11-i*2
-                if(i == 0){
-                    // Do nothing...
-                }
-                else if(i % 2 != 0){
-                    for (int k = 0; k < i; k++){
-                        mOut.print("--");
-                    }
-                }
-                else if(i % 2 == 0){
-                    for (int l = 0; l < i; l++) {
-                        mOut.print("==");
-                    }
-                }
-
+                printFiller(i);
                 mOut.print("\\");
-                for (int j = 1; j < size-i; j++){
-                    mOut.print(" ");
+                positiveSpace(size, i);
+                mOut.print("|");
+                mOut.println();
+            }
+            // middle line
+            mOut.print("|<");
+            if(size % 2 == 0){
+                for (int i = 0; i < size*2-2; i++){
+                    mOut.print("-");
                 }
+            }
+            else {
+                for (int i = 0; i < size*2-2; i++) {
+                    mOut.print("=");
+                }
+            }
+            mOut.print(">|");
+            mOut.println();
+            // bottom triangle
+            for (int i = size-1; i > 0; i--){
+                mOut.print("|");
+                positiveSpace(size, i);
+                mOut.print("\\");
+                printFiller(i);
+                mOut.print("/");
+                positiveSpace(size, i);
                 mOut.print("|");
                 mOut.println();
             }
@@ -94,5 +105,23 @@ public class Logic
         mOut.println();
     }
 
+    public void positiveSpace(int size, int i){
+        for (int j = 1; j <= size-i; j++){
+            mOut.print(" ");
+        }
+    }
+
+    public void printFiller(int i){
+        if(i % 2 == 0){
+            for (int j = 0; j < i-1; j++){
+                mOut.print("--");
+            }
+        }
+        else if(i % 2 != 0){
+            for (int j = 0; j < i-1; j++) {
+                mOut.print("==");
+            }
+        }
+    }
 
 }
